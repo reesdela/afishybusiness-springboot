@@ -30,6 +30,20 @@ public class UserServices {
         }
     }
 
+    public void authenticate(User user) {
+        Optional<User> userOptional = userRepository.findById(user.getEmail());
+        if(userOptional.isPresent()) {
+            User userMatch = userOptional.get();
+            if (isPasswordMatch(userMatch.getPassword(), user.getPassword())) {
+                // password match! user is authenticated and sent a session alongside the resposne
+            } else {
+                //passwords do not match
+            }
+        } else {
+            // user does not exist
+        }
+    }
+
     public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
