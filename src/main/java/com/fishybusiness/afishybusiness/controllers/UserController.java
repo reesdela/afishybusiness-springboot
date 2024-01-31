@@ -1,12 +1,12 @@
 package com.fishybusiness.afishybusiness.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fishybusiness.afishybusiness.Models.User;
@@ -29,8 +29,14 @@ public class UserController {
     }
 
     @PostMapping("authenticate")
-    public void authenticateUser (@RequestBody User user) {
-        userServices.authenticate(user);
+    public ResponseEntity<String> authenticateUser (@RequestBody User user, final HttpSession session) {
+        System.out.println(session);
+        session.setAttribute("USER_DATA", "test");
+        System.out.println(session.getId());
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("sessionId", session.getId());
+        return new ResponseEntity<String>("", headers, HttpStatus.CREATED);
+       // userServices.authenticate(user);
     }
     // @PostMapping("/authenticate")
     // @ResponseBody
