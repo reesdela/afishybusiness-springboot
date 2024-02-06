@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,14 +31,15 @@ public class UserController {
     }
 
     @PostMapping("authenticate")
-    public ResponseEntity<String> authenticateUser (@RequestBody User user, final HttpSession session) {
-        System.out.println(session);
-        session.setAttribute("USER_DATA", "test");
-        System.out.println(session.getId());
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("sessionId", session.getId());
-        return new ResponseEntity<String>("", headers, HttpStatus.CREATED);
-       // userServices.authenticate(user);
+    public void authenticateUser (@RequestBody User user) {
+        System.out.println("hello");
+        // System.out.println(session.getId());
+        // System.out.println(session.toString());
+        // System.out.println(session.hashCode());
+        // HttpHeaders headers = new HttpHeaders();
+        // headers.add("Set-Cookie", "session=" + session.getId());
+       // return new ResponseEntity<String>("", headers, HttpStatus.CREATED);
+    //    userServices.authenticate(user);
     }
     // @PostMapping("/authenticate")
     // @ResponseBody
