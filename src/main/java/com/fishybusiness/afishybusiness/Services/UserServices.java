@@ -35,11 +35,14 @@ public class UserServices {
         if(userOptional.isPresent()) {
             User userMatch = userOptional.get();
             if (isPasswordMatch(userMatch.getPassword(), user.getPassword())) {
+                System.out.println("hello");
                 // password match! user is authenticated and sent a session alongside the resposne
             } else {
+                System.out.println("no");
                 //passwords do not match
             }
         } else {
+            System.out.println("go");
             // user does not exist
         }
     }
