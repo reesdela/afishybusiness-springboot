@@ -33,13 +33,6 @@ public class UserController {
     @PostMapping("authenticate")
     public void authenticateUser (@RequestBody User user) {
         System.out.println("hello");
-        // System.out.println(session.getId());
-        // System.out.println(session.toString());
-        // System.out.println(session.hashCode());
-        // HttpHeaders headers = new HttpHeaders();
-        // headers.add("Set-Cookie", "session=" + session.getId());
-       // return new ResponseEntity<String>("", headers, HttpStatus.CREATED);
-    //    userServices.authenticate(user);
     }
     // @PostMapping("/authenticate")
     // @ResponseBody
